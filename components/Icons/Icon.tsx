@@ -3,17 +3,18 @@ import Svg, { SvgProps, G, Path } from "react-native-svg";
 type StateProps = {
   color: string;
   size: number;
+  focused: boolean;
 };
 
 // type CustomSvgProps = SvgProps & { xmlns: String };
 
-export const HomeIcon = ({ color, size }: StateProps): JSX.Element => {
+export const HomeIcon = ({ color, size, focused }: StateProps): JSX.Element => {
   return (
     <Svg
       width={size}
       height={size}
       viewBox={`0 0 ${size} ${size}`}
-      fill="none"
+      fill={focused ? color : "none"}
       stroke={color}
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -27,13 +28,13 @@ export const HomeIcon = ({ color, size }: StateProps): JSX.Element => {
     </Svg>
   );
 };
-export const ProfileIcon = ({ color, size }: StateProps): JSX.Element => {
+export const ProfileIcon = ({ color, size, focused }: StateProps): JSX.Element => {
   return (
     <Svg
       width={size}
       height={size}
       viewBox={`0 0 ${size} ${size}`}
-      fill="none"
+      fill={focused ? color : "none"}
       stroke={color}
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -56,13 +57,13 @@ export const ProfileIcon = ({ color, size }: StateProps): JSX.Element => {
     </Svg>
   );
 };
-export const CategoryIcon = ({ color, size }: StateProps): JSX.Element => {
+export const CategoryIcon = ({ color, size,focused }: StateProps): JSX.Element => {
   return (
     <Svg
       width={size}
       height={size}
       viewBox={`0 0 ${size + 1} ${size}`}
-      fill="none"
+      fill={focused ? color : "none"}
       stroke={color}
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -91,13 +92,13 @@ export const CategoryIcon = ({ color, size }: StateProps): JSX.Element => {
     </Svg>
   );
 };
-export const StoreIcon = ({ color, size }: StateProps): JSX.Element => {
+export const StoreIcon = ({ color, size,focused }: StateProps): JSX.Element => {
   return (
     <Svg
       width={size}
       height={size}
       viewBox={`0 0 ${size} ${size}`}
-      fill="none"
+      fill={focused ? color : "none"}
       stroke={color}
       xmlns="http://www.w3.org/2000/svg"
     >

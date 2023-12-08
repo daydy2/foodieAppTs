@@ -31,14 +31,24 @@ const BottomNav = (): JSX.Element => {
         tabBarInactiveTintColor: colors.secondary,
         tabBarActiveTintColor: colors.primary,
         headerShown: false,
+        tabBarStyle: {
+          position: "absolute",
+          bottom: 8,
+          right: 10,
+          left: 10,
+          height: 70,
+          borderRadius: 16,
+          backgroundColor: "#bababa",
+        },
+        tabBarShowLabel: false,
       }}
     >
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <HomeIcon color={color} size={size} />
+          tabBarIcon: ({ color, size, focused }) => (
+            <HomeIcon color={color} size={size} focused={focused} />
           ),
         }}
       />
