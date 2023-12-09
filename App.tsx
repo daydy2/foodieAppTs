@@ -19,6 +19,7 @@ import Profile from "./screen/Profile";
 import Meal from "./screen/Meal";
 import Detail from "./screen/Detail";
 import { RootStackParamList } from "./types/type";
+import TabButton from "./components/Button/TabButton";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
@@ -32,13 +33,19 @@ const BottomNav = (): JSX.Element => {
         tabBarActiveTintColor: colors.primary,
         headerShown: false,
         tabBarStyle: {
+          backgroundColor: "#ffffffa3",
+          height: 110,
           position: "absolute",
-          bottom: 8,
-          right: 10,
-          left: 10,
-          height: 70,
-          borderRadius: 16,
-          backgroundColor: "#bababa",
+          borderTopLeftRadius: 32,
+          borderTopRightRadius: 32,
+          shadowColor: colors.primary,
+          shadowOffset: {
+            width: 0,
+            height: -4,
+          },
+          shadowOpacity: 1,
+          shadowRadius: 32,
+          elevation: 4,
         },
         tabBarShowLabel: false,
       }}
@@ -48,7 +55,10 @@ const BottomNav = (): JSX.Element => {
         component={Home}
         options={{
           tabBarIcon: ({ color, size, focused }) => (
-            <HomeIcon color={color} size={size} focused={focused} />
+            <HomeIcon color={color} size={size} />
+          ),
+          tabBarButton: (props) => (
+            <TabButton props={props} iconName={"Home"} />
           ),
         }}
       />
@@ -59,6 +69,9 @@ const BottomNav = (): JSX.Element => {
           tabBarIcon: ({ color, size }) => (
             <StoreIcon color={color} size={size} />
           ),
+          tabBarButton: (props) => (
+            <TabButton props={props} iconName={"Store"} />
+          ),
         }}
       />
       <Tab.Screen
@@ -68,14 +81,20 @@ const BottomNav = (): JSX.Element => {
           tabBarIcon: ({ color, size }) => (
             <CategoryIcon color={color} size={size} />
           ),
+          tabBarButton: (props) => (
+            <TabButton props={props} iconName={"Cuisine"} />
+          ),
         }}
       />
       <Tab.Screen
-        name="Proile"
+        name="Profile"
         component={Profile}
         options={{
           tabBarIcon: ({ color, size }) => (
             <ProfileIcon color={color} size={size} />
+          ),
+          tabBarButton: (props) => (
+            <TabButton props={props} iconName={"Profile"} />
           ),
         }}
       />
@@ -90,12 +109,11 @@ export default function App(): JSX.Element {
       <NavigationContainer>
         <QueryClientProvider client={queryClient}>
           <Stack.Navigator
-            initialRouteName="Splash"
+            initialRouteName="Loadup"
             screenOptions={{
               headerShown: false,
             }}
           >
-            <Stack.Screen name="Splash" component={Splash} />
             <Stack.Screen name="Loadup" component={Loadup} />
             <Stack.Screen name="Detail" component={Detail} />
             <Stack.Screen name="Meals" component={Meal} />
