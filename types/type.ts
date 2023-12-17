@@ -56,5 +56,21 @@ export type RootStackParamList = {
   Loadup: undefined;
   Detail: { mealId: string };
   Meals: { catId: string };
-  BottomTab: undefined;
+  BottomTab: { screen: string };
+  LoginScreen: undefined;
+  SignupScreen: undefined;
+};
+
+export type UserData = {
+  token: string;
+  user: {
+    is_verified: boolean | undefined;
+    name: string;
+  };
+};
+
+export type LoginData = {
+  email: string;
+  password: string;
+  name?: string;
 };

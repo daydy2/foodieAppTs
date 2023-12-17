@@ -20,6 +20,14 @@ import Meal from "./screen/Meal";
 import Detail from "./screen/Detail";
 import { RootStackParamList } from "./types/type";
 import TabButton from "./components/Button/TabButton";
+import LoginScreen from "./screen/LoginScreen";
+import SignupScreen from "./screen/SignupScreen";
+import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+import { useCallback } from "react";
+import { View } from "react-native";
+
+SplashScreen.preventAutoHideAsync();
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
@@ -103,22 +111,42 @@ const BottomNav = (): JSX.Element => {
 };
 
 export default function App(): JSX.Element {
+  const [fontsLoaded, error]: [boolean, Error | null] = useFonts({
+    "YaroRg": require("./assets/font/YaroRg.ttf"),
+  });
+
+  const onLayoutView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
     <>
       <StatusBar style="dark" />
+
       <NavigationContainer>
         <QueryClientProvider client={queryClient}>
-          <Stack.Navigator
-            initialRouteName="Loadup"
-            screenOptions={{
-              headerShown: false,
-            }}
-          >
-            <Stack.Screen name="Loadup" component={Loadup} />
-            <Stack.Screen name="Detail" component={Detail} />
-            <Stack.Screen name="Meals" component={Meal} />
-            <Stack.Screen name="BottomTab" component={BottomNav} />
-          </Stack.Navigator>
+          <View style={{ flex: 1 }} onLayout={onLayoutView}>
+            <Stack.Navigator
+              initialRouteName="Loadup"
+              screenOptions={{
+                headerShown: false,
+              }}
+            >
+              <Stack.Screen name="Loadup" component={Loadup} />
+              <Stack.Screen name="Detail" component={Detail} />
+              <Stack.Screen name="Meals" component={Meal} />
+              <Stack.Screen name="LoginScreen" component={LoginScreen} options={{
+                presentation: 'modal'
+              }}/>
+              <Stack.Screen name="SignupScreen" component={SignupScreen} />
+              <Stack.Screen name="BottomTab" component={BottomNav} />
+            </Stack.Navigator>
+          </View>
         </QueryClientProvider>
       </NavigationContainer>
     </>

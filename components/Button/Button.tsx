@@ -1,4 +1,10 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React, { ReactNode } from "react";
 import LinearGradient from "react-native-linear-gradient";
 
@@ -9,22 +15,26 @@ interface ButtonProps {
   textColor: string;
   linear: boolean;
   color?: string;
-  propStyle?: object
+  propStyle?: object;
+  disable?: boolean;
+  loading?: boolean;
 }
-const Button: React.FC<ButtonProps> = ({
+const Buttons: React.FC<ButtonProps> = ({
   children,
   icon,
   onPress,
   textColor,
   linear,
   color,
-  propStyle
+  propStyle,
+  disable = true,
+  loading = false,
 }) => {
   return (
     <Pressable
       android_ripple={{ color: "#ccc" }}
       style={({ pressed }) => pressed && styles.pressed}
-      onPress={onPress}
+      onPress={disable ? onPress : () => {}}
     >
       {linear ? (
         <LinearGradient
@@ -34,24 +44,36 @@ const Button: React.FC<ButtonProps> = ({
           locations={[0, 9.56]}
           style={styles.container}
         >
-          <Text style={[{ color: textColor }, styles.buttonText]}>
-            {children}
-          </Text>
-          {icon && icon}
+          {loading ? (
+            <ActivityIndicator size={"small"} color={"white"} />
+          ) : (
+            <>
+              <Text style={[{ color: textColor }, styles.buttonText]}>
+                {children}
+              </Text>
+              {icon && icon}
+            </>
+          )}
         </LinearGradient>
       ) : (
         <View style={[styles.container, { backgroundColor: color }, propStyle]}>
-          <Text style={[{ color: textColor }, styles.buttonText]}>
-            {children}
-          </Text>
-          {icon && icon}
+          {loading ? (
+            <ActivityIndicator size={"small"} color={"white"} />
+          ) : (
+            <>
+              <Text style={[{ color: textColor }, styles.buttonText]}>
+                {children}
+              </Text>
+              {icon && icon}
+            </>
+          )}
         </View>
       )}
     </Pressable>
   );
 };
 
-export default Button;
+export default Buttons;
 
 const styles = StyleSheet.create({
   container: {
@@ -71,6 +93,8 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     fontWeight: "400",
+    lineHeight: 20,
+    fontFamily: "YaroRg",
   },
 });
 

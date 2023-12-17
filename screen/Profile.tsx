@@ -4,10 +4,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import TopNav from "../components/Nav/TopNav";
 import Timer from "../components/Common/Timer";
 import { UserIcon } from "../components/Icons/Icon";
-import Button from "../components/Button/Button";
+import Buttons from "../components/Button/Button";
 import { colors } from "../util/color";
 
-const Profile = (): JSX.Element => {
+const Profile = ({ navigation }: any): JSX.Element => {
+  const toLoginScreen = () => {
+    navigation.navigate("LoginScreen");
+  };
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <View style={{ flex: 1, paddingVertical: 30, paddingHorizontal: 32 }}>
@@ -44,6 +47,7 @@ const Profile = (): JSX.Element => {
                 fontSize: 16,
                 fontWeight: "400",
                 color: colors.primary,
+                fontFamily: "YaroRg",
               }}
             >
               Continue with Google
@@ -55,16 +59,26 @@ const Profile = (): JSX.Element => {
               fontWeight: "400",
               lineHeight: 25.6,
               textAlign: "center",
+              fontFamily: "YaroRg",
             }}
           >
             OR
           </Text>
-          <Button color={colors.secondary} textColor="white" linear={false}>
+          <Buttons
+            color={colors.secondary}
+            textColor="white"
+            linear={false}
+            onPress={() => navigation.navigate("LoginScreen")}
+          >
             Login to your account
-          </Button>
-          <Button linear={true} textColor="white">
+          </Buttons>
+          <Buttons
+            linear={true}
+            textColor="white"
+            onPress={() => navigation.navigate("SignupScreen")}
+          >
             Create a new account
-          </Button>
+          </Buttons>
         </View>
       </View>
     </SafeAreaView>
@@ -82,6 +96,7 @@ const styles = StyleSheet.create({
     lineHeight: 22.5,
     fontWeight: "400",
     textAlign: "center",
+    fontFamily: "YaroRg",
   },
   propStyle: {
     borderColor: colors.primary,

@@ -26,10 +26,12 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     textAlign: "center",
     color: colors.secondary,
+    fontFamily: "YaroRg",
   },
   date: {
     fontSize: 10,
     fontWeight: "400",
     color: colors.secondary,
+    fontFamily: "YaroRg",
   },
 });

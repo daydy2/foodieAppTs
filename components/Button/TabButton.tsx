@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { CategoryIcon, HomeIcon, ProfileIcon, StoreIcon } from "../Icons/Icon";
 import { colors } from "../../util/color";
-import Animated, { ZoomIn, ZoomOut } from 'react-native-reanimated';
+import Animated, { SlideInRight, SlideOutRight, ZoomIn, ZoomOut } from 'react-native-reanimated';
 
 interface TabButtonProps { 
   props: any;
@@ -43,7 +43,7 @@ const TabButton: React.FC<TabButtonProps> = ({ props, iconName }) => {
             size={24}
           />
         )}
-        {focused && <Text style={styles.selectedText}>{iconName}</Text>}
+        {focused && <Animated.Text entering={SlideInRight} exiting={SlideOutRight} style={styles.selectedText}>{iconName}</Animated.Text>}
       </Animated.View>
     </TouchableOpacity>
   );
@@ -70,7 +70,8 @@ const styles = StyleSheet.create({
   },
   selectedText: {
     color: colors.primary,
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "400",
+    fontFamily: "YaroRg",
   },
 });

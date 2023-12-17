@@ -4,15 +4,16 @@ import {
   View,
   FlatList,
   ActivityIndicator,
+  ScrollView,
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useQuery } from "react-query";
 import mealSlice from "../store/mealStore";
 import { colors } from "../util/color";
-import FoodCard from "../components/Cards/FoodCard";
 import TopNav from "../components/Nav/TopNav";
 import GoBack from "../components/Common/GoBack";
+import MealCard from "../components/Cards/MealCard";
 
 const Meal = ({ route, navigation }: any) => {
   const catId = route.params.catId;
@@ -26,46 +27,40 @@ const Meal = ({ route, navigation }: any) => {
   );
 
   const Goback = () => {
-    navigation.navigate("BottomTab", {screen: 'Category'});
+    navigation.navigate("BottomTab", { screen: "Category" });
   };
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={styles.container}>
-        <TopNav>
-          <GoBack goBack={Goback} />
-        </TopNav>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>{catName}</Text>
-        </View>
-        <View
-          style={{
-            width: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {data ? (
-            <FlatList
-              data={data}
-              keyExtractor={(item) => item._id}
-              showsVerticalScrollIndicator={false}
-              renderItem={(itemData) => (
-                <FoodCard
-                  imgUrl={itemData.item.imageUrl}
-                  name={itemData.item.title}
-                  price={itemData.item.price}
-                  index={itemData.index}
-                  dataIndex={0}
-                  slider={false}
-                  id={itemData.item._id}
+    <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+      <ScrollView>
+        <View style={styles.container}>
+          <TopNav>
+            <GoBack goBack={Goback} />
+          </TopNav>
+          <View style={styles.header}>
+            <Text style={styles.headerText}>{catName}</Text>
+          </View>
+          <View
+            style={{
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {data ? (
+              data?.map((data: any, index: number) => (
+                <MealCard
+                  image={data.imageUrl}
+                  name={data.title}
+                  price={data.price}
+                  key={index}
                 />
-              )}
-            />
-          ) : (
-            <ActivityIndicator size={"large"} color={colors.primary} />
-          )}
+              ))
+            ) : (
+              <ActivityIndicator size={"large"} color={colors.primary} />
+            )}
+          </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

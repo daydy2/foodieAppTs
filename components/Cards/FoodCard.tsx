@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     lineHeight: 18,
     color: "black",
+    fontFamily: "YaroRg",
   },
   bottom: {
     flexDirection: "row",
@@ -86,6 +87,7 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     lineHeight: 18,
     color: "black",
+    fontFamily: "YaroRg",
   },
   pressed: {
     opacity: 0.4,

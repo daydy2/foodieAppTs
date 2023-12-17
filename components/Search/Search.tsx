@@ -25,7 +25,9 @@ const Search = (): JSX.Element => {
       {searchTerm && (
         <ScrollView style={styles.dropdown}>
           {new Array(20).fill(null).map((_, index) => (
-            <Text key={index}>{index + 1}</Text>
+            <Text key={index} style={{ fontFamily: "YaroRg" }}>
+              {index + 1}
+            </Text>
           ))}
         </ScrollView>
       )}
@@ -55,6 +57,7 @@ const styles = StyleSheet.create({
     color: colors.placeholder,
     textAlign: "left",
     width: "100%",
+    fontFamily: "YaroRg",
   },
   dropdown: {
     position: "absolute",

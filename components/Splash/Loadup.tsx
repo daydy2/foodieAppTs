@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Button from "../Button/Button";
+import Buttons from "../Button/Button";
 import { CookieIcon } from "../Icons/Icon";
 import { colors } from "../../util/color";
 
@@ -18,18 +18,20 @@ const Loadup = ({ navigation }: { navigation: any }): JSX.Element => {
         <Image source={require("../../assets/img/cover.png")} />
       </View>
       <View style={styles.middle}>
-        <Text>Everything for your stomach delivered in minutes</Text>
+        <Text style={styles.middleText}>
+          Everything for your stomach delivered in minutes
+        </Text>
       </View>
 
       <View style={styles.buttonContainer}>
-        <Button
+        <Buttons
           icon={<CookieIcon color={"#fff"} size={25} />}
           onPress={redirectHome}
           textColor="#fff"
           linear={true}
         >
           Order your meal
-        </Button>
+        </Buttons>
       </View>
     </SafeAreaView>
   );
@@ -56,5 +58,12 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     borderColor: colors.primary,
     width: "80%",
+  },
+  middleText: {
+    fontSize: 24,
+    fontFamily: "YaroRg",
+    fontWeight: "400",
+    lineHeight: 36,
+    textAlign: "center",
   },
 });

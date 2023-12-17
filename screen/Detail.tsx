@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "400",
     color: "white",
+    fontFamily: "YaroRg",
   },
   ingredients: {
     gap: 24,
@@ -149,5 +150,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "400",
     color: colors.secondary,
+    fontFamily: "YaroRg",
   },
 });

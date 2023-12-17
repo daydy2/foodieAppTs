@@ -30,10 +30,10 @@ const StoreCard: React.FC<StoreCardProps> = ({ imgUrl, name, location }) => {
           <Image source={{ uri: imgUrl }} alt={name} style={styles.image} />
           <Text style={styles.text}>{name}</Text>
         </View>
-        <View style={{ justifyContent: "center", alignItems: "center" }}>
-          <Text style={styles.text}>{location}</Text>
-        </View>
       </View>
+        {/* <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <Text style={styles.text}>{location}</Text>
+        </View> */}
     </Pressable>
   );
 };
@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 20,
     fontWeight: "400",
+    fontFamily: "YaroRg",
   },
   pressed: {
     opacity: 0.4,

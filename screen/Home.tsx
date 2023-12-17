@@ -13,7 +13,7 @@ const Home = (): JSX.Element => {
   useEffect(() => {
     setDismiss((prev) => true);
   }, []);
-  
+
   const PlanHandler = () => {};
   return (
     <SafeAreaView style={styles.container}>
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "400",
     paddingHorizontal: 32,
+    fontFamily: "YaroRg",
   },
   mealSlider: {
     marginTop: 56,

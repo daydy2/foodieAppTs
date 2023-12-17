@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { getTimeAndDate } from "../../util/util";
-import Button from "../Button/Button";
+import Buttons from "../Button/Button";
 import { colors } from "../../util/color";
 
 interface CardPlannerProps {
@@ -9,7 +9,7 @@ interface CardPlannerProps {
   plan: () => void;
 }
 
-const CardPlanner: React.FC<CardPlannerProps> = ({dismiss, plan}) => {
+const CardPlanner: React.FC<CardPlannerProps> = ({ dismiss, plan }) => {
   const { hours } = getTimeAndDate();
   let timeOfDay;
   let nextTime;
@@ -31,12 +31,22 @@ const CardPlanner: React.FC<CardPlannerProps> = ({dismiss, plan}) => {
           Good {timeOfDay}. Do you want to plan ahead for {nextTime}?
         </Text>
         <View style={styles.buttonContainer}>
-          <Button color="transparent" textColor={colors.primary} linear={false} onPress={dismiss}>
+          <Buttons
+            color="transparent"
+            textColor={colors.primary}
+            linear={false}
+            onPress={dismiss}
+          >
             Dismiss
-          </Button>
-          <Button color={colors.primary} textColor="white" linear={false} onPress={plan}>
+          </Buttons>
+          <Buttons
+            color={colors.primary}
+            textColor="white"
+            linear={false}
+            onPress={plan}
+          >
             Okay, let's plan
-          </Button>
+          </Buttons>
         </View>
       </View>
     </View>
@@ -59,6 +69,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "400",
     color: "white",
+    fontFamily: "YaroRg",
   },
   inner: {
     gap: 32,
