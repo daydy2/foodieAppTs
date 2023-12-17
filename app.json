@@ -15,9 +15,7 @@
       "**/*"
     ],
     "ios": {
-      "bundleIdentifier": "com.daydy2.foodieAppTs",
-      "supportsTablet": true,
-    
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
